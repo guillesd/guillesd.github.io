@@ -5,10 +5,10 @@ permalink: /about/
 ---
 <style>
 img {
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
-  border: solid 5px #ccc;
+  border: solid 2px #ccc;
 }
 </style>
 <p align="center">
