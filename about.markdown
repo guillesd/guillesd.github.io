@@ -9,7 +9,7 @@ permalink: /about/
   height: 400px;
   border-radius: 50%;
   border: solid 2px #ccc;
-  object-fit: contain;
+  object-fit: cover;
 }
 </style>
 <p align="center">
