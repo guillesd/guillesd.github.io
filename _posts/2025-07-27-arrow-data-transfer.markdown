@@ -63,13 +63,13 @@ def benchmark():
 ```
 
 After running the benchmark, I used the collected data to make a simple plot:
-![benchmark](../content/arrow_data_transfer/benchmark.png)
+![benchmark](/content/arrow_data_transfer/benchmark.png)
 
 In the image, you can clearly see that after 1M rows &mdash;where Arrow already performs 10x better than JSON&mdash; the thing goes bananas. At 10M rows, JSON goes up to more than 100 seconds, while Arrow is still under 10 seconds. I stopped the benchmark here, but just out of curiosity, I decided to put up the limit for the Arrow request to 100M rows, which it still managed in 30 seconds. Very impressive!
 
 For the people out there that can't stand not knowing the little details, you may be wondering where the time is actually lost. Well, first let's look at a couple of diagrams that break down the different possible points where things go so wrong for JSON and why Arrow may be beating the big J up so badly:
 
-![ser_deser_process](../content/arrow_data_transfer/arrow_json_process.png)
+![ser_deser_process](/content/arrow_data_transfer/arrow_json_process.png)
 
 Looking at this image, there are some points where the application could be profiled:
 - In the serialization, I am already doing something a bit funky: presenting the DuckDB query results as a Numpy object, which I then serialize using a custom encoder. The Arrow DuckDB interface, on the other hand, is zero-copy and works like a blast. This is unfair to JSON since it is just not a good format for the task.
@@ -81,8 +81,8 @@ The first point we know is a win for Arrow because of the great integration with
 ### Finding the bottleneck: using Chrome DevTools
 Well, Chrome DevTools are definitely NOT made for data-intensive applications. However, they do have a beautiful Timing tab under the Network tab that gives you some very insightful information about your requests. The following screenshots come from one request to the JSON endpoint and another one to the Arrow endpoint for 1M rows:
 
-![JSON request chrome tools](../content/arrow_data_transfer/chrome_tools_json_1M.png)
-![Arrow request chrome tools](../content/arrow_data_transfer/chrome_tools_arrow_1M.png)
+![JSON request chrome tools](/content/arrow_data_transfer/chrome_tools_json_1M.png)
+![Arrow request chrome tools](/content/arrow_data_transfer/chrome_tools_arrow_1M.png)
 
 We are only going to focus on the `Waiting for server response` and `Content Download` metrics since the others are negligible and also don't have anything to do with serialization performance or time of transfer. In the top screenshot, we have the JSON request. It seems that indeed the serialization process takes around 70% of the total request time and ~30% would be the actual time over the wire. In Arrow's case (bottom screenshot), almost all of the time is spent in serialization and writing the data to the sink (server-side response), while the time over the wire (content download) is incredibly small.
 
@@ -90,7 +90,7 @@ We are only going to focus on the `Waiting for server response` and `Content Dow
 
 ### Finding the bottleneck: deserialization
 Now this was interesting. While clearly deserializing is not the only bottleneck that makes JSON way more inefficient for this type of application, it is clearly a factor. I added some logs in my client at the deserialization stage to time these steps. I was shocked to see that **Arrow has negligible deserialization overhead** to the millisecond level, running the benchmark up to 10M rows. JSON, on the other hand... well, you can see in this graph:
-![Arrow vs JSON deserialization benchmark](../content/arrow_data_transfer/arrow_json_deser_benchmark.png)
+![Arrow vs JSON deserialization benchmark](/content/arrow_data_transfer/arrow_json_deser_benchmark.png)
 
 This graph is pretty similar to the one we saw above. The bigger the payload, the bigger the struggle for JSON. The main :exploding_head: difference is that Arrow doesn't show any overhead while deserializing data. Why? Not sure, but maybe Arrow just maps the binary data layout directly into Arrow structures... and pointing to data is way faster than copying.
 
