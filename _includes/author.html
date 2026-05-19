@@ -1,0 +1,32 @@
+{%- if page.url == '/' -%}
+<section class="home-hero">
+  <img class="home-hero-img" src="{{ site.author.avatar }}" alt="{{ site.title | escape }}" />
+  <h1 class="home-hero-title">{{ site.title | escape }}</h1>
+  <p class="home-hero-tagline">{{ site.description }}</p>
+</section>
+
+<style>
+  .home-hero {
+    text-align: center;
+    margin: 1.5rem auto 3rem;
+  }
+  .home-hero-img {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    margin: 0 auto 1.75rem;
+    border-radius: 12px;
+  }
+  .home-hero-title {
+    margin: 0 0 0.75rem;
+    font-size: 1.9rem;
+    line-height: 1.25;
+  }
+  .home-hero-tagline {
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.85;
+  }
+</style>
+{%- endif -%}

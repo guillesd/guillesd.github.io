@@ -28,14 +28,26 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: https://guillesd.github.io
 github_username: guillesd
 
+# Klisé renders the home page from this author block (avatar + name + bio).
+author:
+  name: A place safe from tech hype
+  avatar: /content/images/smart-panda.jpeg
+  bio: >-
+    Honest, hype-free opinions on tech, the tech-world, and some mental-health
+    topics slightly related to tech. Reach me at
+    <a href="mailto:gsdionis@gmail.com">gsdionis@gmail.com</a> or on
+    <a href="https://github.com/guillesd" target="_blank" rel="noopener">GitHub</a>.
+  email: gsdionis@gmail.com
+  github: guillesd
+
 # Build settings
-theme: minima
-minima:
-  skin: solarized
+remote_theme: piharpi/jekyll-klise
+mode: light    # "light" | "dark"
 plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jemoji
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
