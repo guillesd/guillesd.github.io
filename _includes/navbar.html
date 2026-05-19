@@ -69,6 +69,15 @@
      nav links — pull it back up so all three baselines line up. */
   .navbar .menu a#mode { top: 0; }
 
+  /* Hide the blue focus outline on click, but keep it for keyboard navigation
+     (Tab) so the page stays accessible. */
+  .navbar a:focus { outline: none; }
+  .navbar a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   @media screen and (max-width: 768px) {
     .navbar .site-title {
       /* mobile mode-icon sits at left:10px top:12px in the fixed 50px bar */
