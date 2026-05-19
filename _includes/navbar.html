@@ -1,0 +1,79 @@
+<div class="navbar" role="navigation">
+  <nav class="menu">
+    <a class="site-title" href="/">{{ site.title | escape }}</a>
+    <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+    <label for="menu-trigger">
+      <span class="menu-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+        </svg>
+      </span>
+    </label>
+    <a id="mode">
+      <svg class="mode-sunny" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+        <title>LIGHT</title>
+        <line x1="256" y1="48" x2="256" y2="96" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="256" y1="416" x2="256" y2="464" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="403.08" y1="108.92" x2="369.14" y2="142.86" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="142.86" y1="369.14" x2="108.92" y2="403.08" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="464" y1="256" x2="416" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="96" y1="256" x2="48" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="403.08" y1="403.08" x2="369.14" y2="369.14" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="142.86" y1="142.86" x2="108.92" y2="108.92" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <circle cx="256" cy="256" r="80" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+      </svg>
+      <svg class="mode-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+        <title>DARK</title>
+        <line x1="256" y1="48" x2="256" y2="96" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="256" y1="416" x2="256" y2="464" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="403.08" y1="108.92" x2="369.14" y2="142.86" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="142.86" y1="369.14" x2="108.92" y2="403.08" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="464" y1="256" x2="416" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="96" y1="256" x2="48" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="403.08" y1="403.08" x2="369.14" y2="369.14" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <line x1="142.86" y1="142.86" x2="108.92" y2="108.92" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+        <circle cx="256" cy="256" r="80" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" />
+      </svg>
+    </a>
+    <div class="trigger">
+      <div class="trigger-container">
+        {%- assign url = page.url -%}
+        <a class="menu-link {% if url == '/' %}active{% endif %}" href="/">Home</a>
+        <a class="menu-link {% if url == '/about/' %}active{% endif %}" href="/about">About</a>
+        <a class="menu-link social" href="https://www.linkedin.com/in/guillermo-s%C3%A1nchez-dionis/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 512 512" fill="#0A66C2">
+            <title>LinkedIn</title>
+            <path d="M444.17 32H70.28C49.85 32 32 46.7 32 66.89v374.72C32 461.91 49.85 480 70.28 480h373.78c20.54 0 35.94-18.21 35.94-38.39V66.89C480.12 46.7 464.6 32 444.17 32zm-273.3 373.43h-64.18V205.88h64.18zM141 175.54h-.46c-20.54 0-33.84-15.29-33.84-34.43 0-19.49 13.65-34.42 34.65-34.42s33.85 14.82 34.31 34.42c0 19.14-13.31 34.43-34.66 34.43zm264.43 229.89h-64.18V296.32c0-26.14-9.34-44-32.56-44-17.74 0-28.24 12-32.91 23.69-1.75 4.2-2.22 9.92-2.22 15.76v113.66h-64.18V205.88h64.18v27.77c9.34-13.3 23.93-32.44 57.88-32.44 42.13 0 74 27.77 74 87.64z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<style>
+  /* Klisé's #mode floats left with position:relative left:8px and z-index:1.
+     Pad the title left so it clears that icon. */
+  .navbar .site-title {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    color: inherit;
+    padding-left: 45px;
+    white-space: nowrap;
+  }
+  .navbar .site-title:hover { opacity: 0.7; }
+
+  /* Klisé ships `#mode` with `top: 6px` which sits below the inline title and
+     nav links — pull it back up so all three baselines line up. */
+  .navbar .menu a#mode { top: 0; }
+
+  @media screen and (max-width: 768px) {
+    .navbar .site-title {
+      /* mobile mode-icon sits at left:10px top:12px in the fixed 50px bar */
+      padding-left: 45px;
+      font-size: 0.95rem;
+    }
+  }
+</style>

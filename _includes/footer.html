@@ -1,0 +1,117 @@
+<footer class="site-footer">
+  <p class="site-footer-tagline">{{ site.description }}</p>
+  <p class="site-footer-links">
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <span class="dot">&middot;</span>
+    <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">github.com/{{ site.github_username }}</a>
+    <span class="dot">&middot;</span>
+    <a href="https://www.linkedin.com/in/guillermo-s%C3%A1nchez-dionis/" target="_blank" rel="noopener">linkedin</a>
+  </p>
+  <p class="site-footer-copy">&copy; {{ site.time | date: "%Y" }} {{ site.title | escape }}</p>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 4rem;
+    padding: 1.75rem 0 1rem;
+    border-top: 1px solid rgba(128, 128, 128, 0.25);
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .site-footer-tagline {
+    max-width: 520px;
+    margin: 0 auto 0.75rem;
+    opacity: 0.85;
+  }
+  .site-footer-links {
+    margin: 0 0 0.5rem;
+  }
+  .site-footer-links .dot {
+    margin: 0 0.35rem;
+    opacity: 0.6;
+  }
+  .site-footer-copy {
+    margin: 0;
+    opacity: 0.55;
+    font-size: 0.82rem;
+  }
+
+  /* Light-mode syntax highlighting (overrides Klisé's dark Gruvbox).
+     Scoped to `body:not([data-theme="dark"])` so dark mode is untouched. */
+  body:not([data-theme="dark"]) pre.highlight,
+  body:not([data-theme="dark"]) pre {
+    background-color: #f6f8fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  body:not([data-theme="dark"]) .highlight,
+  body:not([data-theme="dark"]) .highlight .w { color: #24292f; }
+  body:not([data-theme="dark"]) .highlight .err { color: #cf222e; font-weight: bold; }
+  body:not([data-theme="dark"]) .highlight .c,
+  body:not([data-theme="dark"]) .highlight .cd,
+  body:not([data-theme="dark"]) .highlight .cm,
+  body:not([data-theme="dark"]) .highlight .c1,
+  body:not([data-theme="dark"]) .highlight .cs { color: #6e7781; font-style: italic; }
+  body:not([data-theme="dark"]) .highlight .cp { color: #116329; }
+  body:not([data-theme="dark"]) .highlight .nt { color: #cf222e; }
+  body:not([data-theme="dark"]) .highlight .o,
+  body:not([data-theme="dark"]) .highlight .ow,
+  body:not([data-theme="dark"]) .highlight .p,
+  body:not([data-theme="dark"]) .highlight .pi { color: #24292f; }
+  body:not([data-theme="dark"]) .highlight .gi { color: #1f883d; background-color: #dafbe1; }
+  body:not([data-theme="dark"]) .highlight .gd { color: #cf222e; background-color: #ffebe9; }
+  body:not([data-theme="dark"]) .highlight .gh { color: #0969da; font-weight: bold; }
+  body:not([data-theme="dark"]) .highlight .k,
+  body:not([data-theme="dark"]) .highlight .kn,
+  body:not([data-theme="dark"]) .highlight .kp,
+  body:not([data-theme="dark"]) .highlight .kr,
+  body:not([data-theme="dark"]) .highlight .kv { color: #cf222e; }
+  body:not([data-theme="dark"]) .highlight .kc { color: #0550ae; }
+  body:not([data-theme="dark"]) .highlight .kt { color: #953800; }
+  body:not([data-theme="dark"]) .highlight .kd { color: #8250df; }
+  body:not([data-theme="dark"]) .highlight .s,
+  body:not([data-theme="dark"]) .highlight .sb,
+  body:not([data-theme="dark"]) .highlight .sc,
+  body:not([data-theme="dark"]) .highlight .sd,
+  body:not([data-theme="dark"]) .highlight .s2,
+  body:not([data-theme="dark"]) .highlight .sh,
+  body:not([data-theme="dark"]) .highlight .sx,
+  body:not([data-theme="dark"]) .highlight .s1,
+  body:not([data-theme="dark"]) .highlight .si,
+  body:not([data-theme="dark"]) .highlight .sr { color: #0a3069; font-style: normal; }
+  body:not([data-theme="dark"]) .highlight .se { color: #cf222e; }
+  body:not([data-theme="dark"]) .highlight .nn,
+  body:not([data-theme="dark"]) .highlight .nc { color: #953800; }
+  body:not([data-theme="dark"]) .highlight .no,
+  body:not([data-theme="dark"]) .highlight .m,
+  body:not([data-theme="dark"]) .highlight .mf,
+  body:not([data-theme="dark"]) .highlight .mh,
+  body:not([data-theme="dark"]) .highlight .mi,
+  body:not([data-theme="dark"]) .highlight .il,
+  body:not([data-theme="dark"]) .highlight .mo,
+  body:not([data-theme="dark"]) .highlight .mb,
+  body:not([data-theme="dark"]) .highlight .mx { color: #0550ae; }
+  body:not([data-theme="dark"]) .highlight .na { color: #1f883d; }
+  body:not([data-theme="dark"]) .highlight .ss { color: #0a3069; }
+</style>
+
+<script src="/assets/js/main.js" defer="defer"></script>
+{%- if site.google_analytics -%}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag("js", new Date());
+  gtag("config", "{{ site.google_analytics }}");
+</script>
+{%- endif -%}
+{%- if page.url == '/archive/' -%}
+<script src="/assets/js/search.min.js"></script>
+<script>
+  var sjs = SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/assets/search.json',
+  });
+</script>
+{%- endif -%}
