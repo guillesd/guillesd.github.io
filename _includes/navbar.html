@@ -69,20 +69,16 @@
      nav links — pull it back up so all three baselines line up. */
   .navbar .menu a#mode { top: 0; }
 
-  /* Hide the blue focus outline on click, but keep it for keyboard navigation
-     (Tab) so the page stays accessible. */
-  .navbar a:focus { outline: none; }
-  .navbar a:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
   @media screen and (max-width: 768px) {
-    .navbar .site-title {
-      /* mobile mode-icon sits at left:10px top:12px in the fixed 50px bar */
-      padding-left: 45px;
-      font-size: 0.95rem;
-    }
+    /* On mobile Klisé makes .menu position:fixed at 50px height with
+       text-align:center. Keeping the title inline inside that bar fights the
+       mode icon (left) and hamburger (right) and can wrap on narrow screens,
+       distorting the bar. Hide it on mobile — the title still appears large
+       on the home hero. */
+    .navbar .site-title { display: none; }
+
+    /* The desktop `top: 0` rule above wins by specificity even at mobile
+       widths, so restore Klisé's intended mobile offset. */
+    .navbar .menu a#mode { top: 12px; }
   }
 </style>

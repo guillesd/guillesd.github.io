@@ -37,6 +37,15 @@
     font-size: 0.82rem;
   }
 
+  /* Global: hide the blue focus ring on click (mouse), keep a subtle outline
+     for keyboard users (Tab) so navigation remains accessible. */
+  a:focus { outline: none; }
+  a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   /* Light-mode syntax highlighting (overrides Klisé's dark Gruvbox).
      Scoped to `body:not([data-theme="dark"])` so dark mode is untouched. */
   body:not([data-theme="dark"]) pre.highlight,
