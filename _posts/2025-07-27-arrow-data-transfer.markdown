@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Exploring Arrow for HTTP Services in Data-Intensive Applications"
+title:  "Exploring Arrow for http services in data-intensive applications"
 date:   2025-07-27 11:29:21 +0100
 categories: intro
 ---
